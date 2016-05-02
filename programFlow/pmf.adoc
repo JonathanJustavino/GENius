@@ -1,0 +1,24 @@
+= Program Flow
+
+== Hauptmenü:
+Das Hauptmenü besitzt einen Play- und einen "About us"-Button, sowie Lautstärkeregler für Musik, Ambiente und Sound-Effects
+
+== Tutorial
+Mit dem Playbutton vom Hauptmenü gelangt man in das Tutorial, in dem man bekanntschaft mit dem Einhorn macht, das einen durch die 
+Basics führt
+
+== Level "X"
+Nach dem Tutorial kommt man in das erste Level und nach jedem geschafftem Level kommt man in das nächste, bis das Spiel vorbei ist.
+Scheitert man, startet das aktuelle Level von vorne.
+
+=== Phase 1: Intro 
+In Phase 1 eines Levels lernt man ein neues Detail und/oder eine neue Mendelsche Regel, die für das Abschließen des Levels relevant ist.
+
+=== Phase 2: Zucht-Zyklus
+Hier probiert der Spieler innerhalb eines oder mehreren Zucht-Zyklen die Pflanze entsprechend der Level-Kriterien zu kreieren.
+
+=== Phase 3: Evaluation (Nur bei mehreren Zyklen)
+Hier sieht sich der Spieler das Ergebnis seines Versuchs an und kann optional entscheiden, welche Pflanzen zu entfernen sind um Platz zu sparen
+
+-> Hat der Spieler ein Level erfolgreich absolviert, sieht er das Einhorn wachsen und das nächste Level lädt,
+	bzw. der Spieler gewinnt, die Outro Sequenz wird abgespielt und der Spieler gelangt wieder ins Hauptmenü.
