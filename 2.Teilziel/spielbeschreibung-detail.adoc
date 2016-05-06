@@ -1,0 +1,51 @@
+= Spiel-Details
+
+Das Spiel lässt sich in X Akte unterteilen, jeder Akt besteht dabei aus Y vielen Leveln.
+
+== Akt:
+	- Ein __Akt-Ende__ ist gekennzeichnet durch einen expliziten 
+		Transformationsschritt des Ponys in Richtung Einhorn.
+	- Der __Akt-Anfang__ besteht darin, dass das Pony neue Ansprüche 
+		an das Futter stellt, die nur mithilfe komplexerer 
+		Kreuzungen zu erlangen sind.
+	- Der __Akt__ selber besteht aus mehreren Leveln, die damit beginnen,
+		dass das Einhorn das gewünschte Futter spezifiziert.
+		Der Spieler erhält nun eine Auswahl an Startpflanzen und 
+		beginnt mit dem regulären Gameplay.
+		
+== Reguläre Spiel-Schleife:
+Die Reguläre Spielschleife besteht aus drei (informellen, i. e. nicht unumgänglich abgetrennt durch das Spiel) Schritten:
+
+	- Der Spieler betrachtet die Eigenschaften von Pflanzen hinsichtlich seines Ziels und entscheidet sich welche
+		er miteinander kreuzen möchte. 
+		Als Hilfe dient ihm ein Informationsübersichtsfenster (DNA-Blatt) über jede Pflanze zur Verfügung, in der alles was dem
+		Spieler im Verlauf des Spiels bekannt wird, festgehalten ist.
+		
+	- Nachdem sich der Spieler für zwei Pflanzen entschieden hat, muss er erst sicherstellen, dass er für die Zucht genug 
+		freie Zuchtplätze hat. Möchte er eine Pflanze züchten in der ein rezessives Gen zum Vorschein tritt, dann kann es
+		sein, dass er mehrere Nachkommen züchten muss, um ein erfolgreiches Ergebnis zu erzielen. Je nachdem was sein Ziels
+		ist bestimmt er also wie viel Platz er auf seinen Zuchtfeldern braucht und sucht sich diesen geeignet aus, unter
+		Umständen muss er andere Pflanzen dazu entfernen. Dabei muss er jedoch teilweise berücksichtigen ältere Generationen
+		zu Zwecken der Rückkreuzung zu behalten, da nur mit dieser Methode einige Dinge bestimmt werden können.
+		
+	- Nun kreuzt der Spieler die Pflanze und erhält ein Samensäckchen für die neue Pflanze, die er nun nutzen kann um beliebig
+		viele Plätze damit zu bestücken. Nach getanem Werk drückt der Spieler den "Tag beenden" - Button und nach einer kurzen 
+		Animation graut der neue Tag und die Pflanzen sind gewachsen. Diese Pflanzen kriegen ein tag aus welcher Generation 
+		(seit Levelstart) sie stammen und können einzeln betrachtet und benannt werden. Jede Pflanze hat ein DNA-Blatt in der
+		der DNA-Strang mit Slots visualisiert ist. In diesen Slots sind die eindeutigen Begebenheiten bereits eingetragen, ver-
+		mutungen können selbstständig eingetragen werden. Diese sind dann als vermutung markiert.
+		
+		
+=== Beispeil:
+		* Wenn der Spieler also zu Levelanfang eine Pflanze mit roter Blüte sieht, dann weiß er also schon,
+		dass ein Gen vorhanden ist, der die rote Blüte erzeugt. Sollte aber neben diesem Gen ein weiteres Gen
+		vererbt worden sein, das aber nicht zu Geltung kam, kann dieses immer noch weiter vererbt werden und der Spieler
+		kann dies über weitere zuchtschritte feststellen. 
+		
+		* Solange er diesen Genteil nicht bestimmt hat, ist nicht klar ob die beiden Genteile rezessiv oder dominant sind
+		und wie er das (unter Umständen) ungewünschte Gen beseitigt.
+		
+		* Nun muss er sich also Platz auf seinen Feldern schaffen und mit einer anderen Pflanze bekannte Gentyps kreuzen um
+		weitere Informationen zu erhalten, die weitere generation kann dann mit sich selbst gekreuzt werden und anschließend
+		wieder rückgekreuzt werden um das Gen auszufiltern.
+		
