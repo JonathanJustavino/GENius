@@ -58,8 +58,8 @@ public class GameManager : MonoBehaviour
 		foreach (GameObject go in flowerSlots)
 		{
 			s = go.GetComponent<Slot>();
-			if (s.plant != null)
-				s.plant.GetComponent<Plant>().grow();
+			if (s.PlantObject != null)
+				s.PlantObject.GetComponent<Plant>().grow();
 		}
 	}
 
