@@ -98,7 +98,20 @@ public class GameManager : MonoBehaviour
 
 	public Sprite getPhenotype(string[] genotype)
 	{
-		return defaultPlantSprite;
+		char first = genotype[1][0];
+		char second = genotype[1][1];
+
+		char choice = first < second ? second : first;
+
+		Sprite s = Resources.Load<Sprite>(choice.ToString());
+
+		if (s == null)
+		{
+			Debug.Log("djhfsdfdslgnalsk");
+			return defaultPlantSprite;
+		}
+		else return s;
+
 	}
 
 	public Sprite getSeedImage()
