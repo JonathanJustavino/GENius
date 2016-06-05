@@ -19,10 +19,10 @@ public class ShovelTool : Tool
 			else if (hit.collider.gameObject.tag == "Slot")
 			{
 				slot = hit.collider.GetComponent<Slot>();
-				if (slot.PlantObject != null)
+				if (slot.plant != null)
 				{
-					target = slot.PlantObject;
-					slot.PlantObject = null;
+					target = slot.plant;
+					slot.plant = null;
 				}
 				else target = null;
 			}
@@ -40,23 +40,23 @@ public class ShovelTool : Tool
 			hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward);
 			if (hit.collider == null || hit.collider.tag != "Slot")
 			{
-				slot.PlantObject = target;
+				slot.plant = target;
 				target.transform.position = slot.transform.position;
 				target = null;
 			}
 			else
 			{
 				Slot mySlot = hit.collider.GetComponent<Slot>();
-				if (mySlot.PlantObject != null)
+				if (mySlot.plant != null)
 				{
-					slot.PlantObject = target;
+					slot.plant = target;
 					target.transform.position = slot.transform.position;
 					target = null;
 				}
 				else
 				{
 					slot = mySlot;
-					slot.PlantObject = target;
+					slot.plant = target;
 					target.transform.position = slot.transform.position;
 					target = null;
 				}
