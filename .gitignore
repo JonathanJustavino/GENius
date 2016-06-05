@@ -41,3 +41,4 @@ sysinfo.txt
 
 # asciidoctor - compiled files
 *.html
+UniGEN/
