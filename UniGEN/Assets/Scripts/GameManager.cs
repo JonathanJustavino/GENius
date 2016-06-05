@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 	public Sprite defaultSeedSprite;
 
 	public string currentLevel;
+	public string winCondition;
 
 	// Use this for initialization
 	void Start()
