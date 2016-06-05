@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,10 +34,14 @@ public class GameManager : MonoBehaviour
 	public Sprite defaultPlantSprite;
 	public Sprite defaultSeedSprite;
 
+	public string currentLevel;
+
 	// Use this for initialization
 	void Start()
 	{
 		cycles = deadline;
+		if (currentLevel == "")
+			currentLevel = "Main";
 	}
 
 	// Update is called once per frame
@@ -59,12 +64,12 @@ public class GameManager : MonoBehaviour
 
 	public void restart()
 	{
-
+		SceneManager.LoadScene("Scenes/" + currentLevel);
 	}
 
-	public void exit()
+	public void quit()
 	{
-
+		Application.Quit();
 	}
 
 	public void toggleSound()

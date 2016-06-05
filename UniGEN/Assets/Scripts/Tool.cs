@@ -15,23 +15,35 @@ public class Tool : MonoBehaviour
 	public Texture2D defaultGameCursor { get; set; }
 	public Vector2 cursorHotSpot;
 
+	public GameObject[] popUps;
 
 	protected virtual void Awake()
 	{
 		myImage = GetComponent<Image>();
+		if (defaultImage == null)
+			defaultImage = myImage.sprite;
 	}
 
 	public void SetActive()
 	{
 		isActive = true;
-		myImage.sprite = activeImage;
+		if (activeImage != null)
+			myImage.sprite = activeImage;
 		Cursor.SetCursor(cursor, cursorHotSpot, CursorMode.Auto);
+		foreach (GameObject go in popUps)
+		{
+			go.SetActive(true);
+		}
 	}
 
 	public void Reset()
 	{
 		isActive = false;
 		myImage.sprite = defaultImage;
+		foreach(GameObject go in popUps)
+		{
+			go.SetActive(false);
+		}
 	}
 
 
