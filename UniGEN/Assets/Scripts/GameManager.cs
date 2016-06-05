@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene("Scenes/" + currentLevel);
 	}
 
+	public void StartLevel(string levelName)
+	{
+		SceneManager.LoadScene("Scenes/" + levelName);
+	}
+
 	public void quit()
 	{
 		Application.Quit();
