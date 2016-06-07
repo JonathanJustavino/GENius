@@ -4,23 +4,23 @@
 [Tt]emp/
 [Oo]bj/
 [Bb]uild
-/[Bb]uilds/
+[Bb]uilds/
 [Ll]ibrary/
 sysinfo.txt
-/Assets/AssetStoreTools*
+Assets/AssetStoreTools*
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
 [Ee]xported[Oo]bj/
-/*.userprefs
-/*.csproj
-/*.pidb
-/*.suo
-/*.sln*
-/*.user
-/*.unityproj
-/*.booproj
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln*
+*.user
+*.unityproj
+*.booproj
 
 # ============ #
 # OS generated #

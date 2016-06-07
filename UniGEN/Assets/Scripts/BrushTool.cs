@@ -47,7 +47,11 @@ public class BrushTool : Tool
 					else 
 					{
 						if (t1 != null)
+						{
 							t1.sprite = target1.GetComponent<SpriteRenderer>().sprite;
+							t1.material = target1.GetComponent<SpriteRenderer>().material;
+							t1.color = target1.GetComponent<SpriteRenderer>().color;
+						}
 						currentTarget = 2;
 					}
 				}
@@ -60,7 +64,11 @@ public class BrushTool : Tool
 					else 
 					{
 						if (t2 != null)
+						{
 							t2.sprite = target2.GetComponent<SpriteRenderer>().sprite;
+							t2.material = target2.GetComponent<SpriteRenderer>().material;
+							t2.color = target2.GetComponent<SpriteRenderer>().color;
+						}
 						currentTarget = 1;
 					}
 				}

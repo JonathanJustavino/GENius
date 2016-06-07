@@ -17,6 +17,7 @@ public class Plant : MonoBehaviour
 			genoType = value;
 		}
 	}
+	[SerializeField]
 	private bool grownUp = false;
 	public bool Grown { get { return grownUp; } }
 
@@ -52,7 +53,7 @@ public class Plant : MonoBehaviour
 	{
 		if (grownUp)
 			return;
-		GetComponent<SpriteRenderer>().sprite = GameManager.Instance.getPhenotype(genoType);
+		GameManager.Instance.getPhenotype(genoType, GetComponent<SpriteRenderer>());
 		grownUp = true;
 	}
 }
