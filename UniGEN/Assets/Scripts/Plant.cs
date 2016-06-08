@@ -44,7 +44,7 @@ public class Plant : MonoBehaviour
 		Plant p = o.AddComponent<Plant>();
 		p.genoType = newPlantData;
 		p.phenoType = o.AddComponent<SpriteRenderer>();
-		p.phenoType.sprite = GameManager.Instance.getSeedImage();
+		p.phenoType.sprite = GameManager.Instance.GetPlantManager.getSeedImage();
 		return o;
 	}
 
@@ -53,7 +53,7 @@ public class Plant : MonoBehaviour
 	{
 		if (grownUp)
 			return;
-		GameManager.Instance.getPhenotype(genoType, GetComponent<SpriteRenderer>());
+		GameManager.Instance.GetPlantManager.getPhenotype(genoType, GetComponent<SpriteRenderer>());
 		grownUp = true;
 	}
 }
