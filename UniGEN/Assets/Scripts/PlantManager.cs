@@ -4,7 +4,7 @@ using System.Collections;
 public class PlantManager : MonoBehaviour {
 
 
-	public string[][] seedPool { get; set; }
+	public Gene[][] seedPool { get; set; }
 	public Sprite defaultPlantSprite;
 	public Sprite defaultSeedSprite;
 	public Material plantMaterial;
@@ -69,4 +69,12 @@ public class PlantManager : MonoBehaviour {
 	{
 		return defaultSeedSprite;
 	}
+}
+
+public struct Gene{
+
+	public string type;
+	public string value;
+	public bool dominant;
+
 }
