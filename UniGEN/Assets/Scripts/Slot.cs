@@ -3,5 +3,6 @@ using System.Collections;
 
 public class Slot : MonoBehaviour {
 
-	public GameObject plant;
+	public GameObject PlantObject;
+	
 }
