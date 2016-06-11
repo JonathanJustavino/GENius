@@ -4,61 +4,65 @@ using System.Collections;
 public class PlantManager : MonoBehaviour {
 
 
-	public Gene[][] seedPool { get; set; }
+	public Gene[][][] seedPool { get; set; }
 	public Sprite defaultPlantSprite;
 	public Sprite defaultSeedSprite;
 	public Material plantMaterial;
-	public Color c_a;
-	public Color c_A;
-	public Color c_b;
-	public Color c_B;
+	public Color blue;
+	public Color red;
+	public Color purple;
+	public Color yellow;
+	public Gene[] plant1_left;
+	public Gene[] plant1_right;
+	public Gene[] plant2_left;
+	public Gene[] plant2_right;
 
-	public void getPhenotype(string[] genotype, SpriteRenderer renderer)
+	public void getPhenotype(Gene[][] genotype, SpriteRenderer renderer)
 	{
 		renderer.sharedMaterial = plantMaterial;
 
-		char choice = selectGene(genotype[0][0], genotype[0][1]);
-		renderer.sprite = Resources.Load<Sprite>(choice.ToString());
+		Gene choice = selectGene(genotype[0][0], genotype[0][1]);
+		renderer.sprite = Resources.Load<Sprite>(choice.value);
 
 		choice = selectGene(genotype[1][0], genotype[1][1]);
-		switch(choice)
+		switch(choice.value)
 		{
-		case 'A':
+		case "red":
 			{
-				renderer.color = c_A;
+				renderer.color = red;
 			}
 			break;
-		case 'a':
+		case "blue":
 			{
-				renderer.color = c_a;
+				renderer.color = blue;
 			}
 			break;
-		case 'B':
+		case "yellow":
 			{
-				renderer.color = c_B;
+				renderer.color = yellow;
 			}
 			break;
-		case 'b':
+		case "purple":
 			{
-				renderer.color = c_b;
+				renderer.color = purple;
 			}
 			break;
 		}
 
 	}
-	private char selectGene(char first, char second)
+	private Gene selectGene(Gene first, Gene second)
 	{
-		char choice;
+		Gene choice;
 
-		if (first < 'a')
+		if (first.dominant)
 		{
-			if (second < 'a')
+			if (second.dominant)
 			{
 				choice = Random.Range(1, 3) == 1 ? first : second;
 			}
 			else choice = first;
 		}
-		else if (second < 'a')
+		else if (second.dominant)
 			choice = second;
 		else choice = Random.Range(1, 3) == 1 ? first : second;
 
@@ -69,11 +73,33 @@ public class PlantManager : MonoBehaviour {
 	{
 		return defaultSeedSprite;
 	}
+
+
+	public Gene[][] getDefaultGenes(int number){
+		if(number == 1){
+			Gene[][] g = new Gene[2][];
+			g[0] = plant1_left;
+			g[1] = plant1_right;
+			return g;
+		}
+		if(number == 2){
+			Gene[][] gg = new Gene[2][];
+			gg[0] = plant2_left;
+			gg[1] = plant2_right;
+			return gg;
+		}
+		return null;
+	}
+
+
 }
 
+
+
+[System.Serializable]
 public struct Gene{
 
-	public string type;
+	public string name;
 	public string value;
 	public bool dominant;
 

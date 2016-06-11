@@ -5,8 +5,8 @@ public class Plant : MonoBehaviour
 {
 
 	[SerializeField]
-	private string[] genoType;
-	public string[] GenoType
+	private Gene[][] genoType;
+	public Gene[][] GenoType
 	{
 		get
 		{
@@ -26,7 +26,7 @@ public class Plant : MonoBehaviour
 	private bool phenoActive = false;
 	
 
-	public static GameObject create(string[] parent1, string[] parent2)
+	public static GameObject create(Gene[][] parent1, Gene[][] parent2)
 	{
 		if (parent1.Length != parent2.Length)
 		{
@@ -36,10 +36,13 @@ public class Plant : MonoBehaviour
 
 		GameObject o = new GameObject("Plant");
 
-		string[] newPlantData = new string[parent1.Length];
+		Gene[][] newPlantData = new Gene[parent1.Length][];
 		for (int i = 0; i < newPlantData.Length; i++)
 		{
-			newPlantData[i] = parent1[i].Substring(Random.Range(0, 2), 1) + parent2[i].Substring(Random.Range(0, 2), 1);
+			newPlantData[i] = new Gene[2];
+
+			newPlantData[i][0] = parent1[i][Random.Range(0, 2)];
+			newPlantData[i][1] = parent2[i][Random.Range(0, 2)];
 		}
 		Plant p = o.AddComponent<Plant>();
 		p.genoType = newPlantData;
@@ -48,6 +51,12 @@ public class Plant : MonoBehaviour
 		return o;
 	}
 
+	public void Start(){
+		//müsste noch zugewiesen werden
+		int plantNumber = 1;
+		genoType = GameManager.Instance.GetPlantManager.getDefaultGenes(plantNumber);
+		GameManager.Instance.GetPlantManager.getPhenotype(genoType, phenoType);
+	}
 
 	public void grow()
 	{
