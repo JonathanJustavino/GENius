@@ -45,6 +45,12 @@ public class GameManager : MonoBehaviour
 			currentLevel = "Main";
 	}
 
+	void Awake()
+	{
+		if (plantManager == null)
+			plantManager = GetComponent<PlantManager>();
+	}
+
 	// Update is called once per frame
 	void Update()
 	{

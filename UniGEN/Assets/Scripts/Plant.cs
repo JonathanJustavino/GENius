@@ -6,6 +6,12 @@ public class Plant : MonoBehaviour
 
 	[SerializeField]
 	private Gene[][] genoType;
+	[SerializeField]
+	private bool grownUp = false;
+	private SpriteRenderer phenoType;
+
+	public int plantNumber = 1;
+	public bool Grown { get { return grownUp; } }
 	public Gene[][] GenoType
 	{
 		get
@@ -17,13 +23,6 @@ public class Plant : MonoBehaviour
 			genoType = value;
 		}
 	}
-	[SerializeField]
-	private bool grownUp = false;
-	public bool Grown { get { return grownUp; } }
-
-
-	private SpriteRenderer phenoType;
-	private bool phenoActive = false;
 	
 
 	public static GameObject create(Gene[][] parent1, Gene[][] parent2)
@@ -51,11 +50,10 @@ public class Plant : MonoBehaviour
 		return o;
 	}
 
-	public void Start(){
-		//müsste noch zugewiesen werden
-		int plantNumber = 1;
+	public void abnormalInit(){
+		
 		genoType = GameManager.Instance.GetPlantManager.getDefaultGenes(plantNumber);
-		GameManager.Instance.GetPlantManager.getPhenotype(genoType, phenoType);
+		GameManager.Instance.GetPlantManager.getPhenotype(genoType, GetComponent<SpriteRenderer>());
 	}
 
 	public void grow()

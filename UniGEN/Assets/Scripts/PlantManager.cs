@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlantManager : MonoBehaviour {
+public class PlantManager : MonoBehaviour
+{
 
 
 	public Gene[][][] seedPool { get; set; }
@@ -25,24 +26,24 @@ public class PlantManager : MonoBehaviour {
 		renderer.sprite = Resources.Load<Sprite>(choice.value);
 
 		choice = selectGene(genotype[1][0], genotype[1][1]);
-		switch(choice.value)
+		switch (choice.value)
 		{
-		case "red":
+			case "red":
 			{
 				renderer.color = red;
 			}
 			break;
-		case "blue":
+			case "blue":
 			{
 				renderer.color = blue;
 			}
 			break;
-		case "yellow":
+			case "yellow":
 			{
 				renderer.color = yellow;
 			}
 			break;
-		case "purple":
+			case "purple":
 			{
 				renderer.color = purple;
 			}
@@ -75,20 +76,33 @@ public class PlantManager : MonoBehaviour {
 	}
 
 
-	public Gene[][] getDefaultGenes(int number){
-		if(number == 1){
-			Gene[][] g = new Gene[2][];
-			g[0] = plant1_left;
-			g[1] = plant1_right;
-			return g;
+	public Gene[][] getDefaultGenes(int number)
+	{
+		Gene[][] g = new Gene[2][] { new Gene[2], new Gene[2] };
+		if (number == 1)
+		{
+			g[0][0] = plant1_left[0];
+			g[0][1] = plant1_right[0];
+			g[1][0] = plant1_left[1];
+			g[1][1] = plant1_right[1];
 		}
-		if(number == 2){
-			Gene[][] gg = new Gene[2][];
-			gg[0] = plant2_left;
-			gg[1] = plant2_right;
-			return gg;
+		if (number == 2)
+		{
+			g[0][0] = plant2_left[0];
+			g[0][1] = plant2_right[0];
+			g[1][0] = plant2_left[1];
+			g[1][1] = plant2_right[1];
 		}
-		return null;
+		return g;
+	}
+
+	void Start()
+	{
+		Plant[] ps = FindObjectsOfType<Plant>();
+		foreach(Plant p in ps)
+		{
+			p.abnormalInit();
+		}
 	}
 
 
@@ -97,7 +111,8 @@ public class PlantManager : MonoBehaviour {
 
 
 [System.Serializable]
-public struct Gene{
+public struct Gene
+{
 
 	public string name;
 	public string value;
