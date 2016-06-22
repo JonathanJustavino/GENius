@@ -66,8 +66,8 @@
 			fixed4 frag(v2f IN) : COLOR
 			{
 				fixed4 c = SampleSpriteTexture (IN.texcoord);
-				if (c.x - c.y <= 0.05f && c.y - c.z <= 0.05f && c.w >= 0.25f)
-					c = c * IN.color;
+				if (c.x - c.y <= 0.01f && c.y - c.z <= 0.01f && c.w >= 0)
+					c = c * c * IN.color;
 				c.rgb *= c.a;
 				return c;
 			}

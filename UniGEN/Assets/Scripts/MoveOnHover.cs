@@ -26,13 +26,13 @@ public class MoveOnHover : MonoBehaviour {
             if (hit && hit.collider == col)
             {
                 if (transform != endPos && !movement.routineRunning)
-                    movement.move(endPos.position, 1);
+                    movement.move(endPos.position, animationTime);
 
             }
             else
             {
                 if (transform != startPos && !movement.routineRunning)
-                    movement.move(startPos.position, 1);
+                    movement.move(startPos.position, animationTime);
             }
             yield return null;
         }
