@@ -1,74 +1,79 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlantManager : MonoBehaviour
 {
 
 
-	public Gene[][][] seedPool { get; set; }
+	public string[][] seedPool { get; set; }
 	public Sprite defaultPlantSprite;
 	public Sprite defaultSeedSprite;
 	public Material plantMaterial;
-	public Color blue;
-	public Color red;
 	public Color purple;
+	public Color red;
+	public Color orange;
 	public Color yellow;
-	public Gene[] plant1_left;
-	public Gene[] plant1_right;
-	public Gene[] plant2_left;
-	public Gene[] plant2_right;
+	public Color cyan;
+	public Color blue;
 
-	public void getPhenotype(Gene[][] genotype, SpriteRenderer renderer)
+	[SerializeField]
+	private bool intermediäreFärbung = false;
+
+
+	public void getPhenotype(string[] genotype, SpriteRenderer renderer)
 	{
 		renderer.sharedMaterial = plantMaterial;
+		renderer.sprite = defaultPlantSprite;
 
-		Gene choice = selectGene(genotype[0][0], genotype[0][1]);
-		renderer.sprite = Resources.Load<Sprite>(choice.value);
-
-		choice = selectGene(genotype[1][0], genotype[1][1]);
-		switch (choice.value)
+		if (!intermediäreFärbung)
 		{
-			case "red":
+			string[] farben = genotype[2].Split('.');
+			if (char.IsUpper(farben[0][0]))
 			{
-				renderer.color = red;
+				renderer.color = chooseColor(farben[0]);
+				return;
 			}
-			break;
-			case "blue":
-			{
-				renderer.color = blue;
-			}
-			break;
-			case "yellow":
-			{
-				renderer.color = yellow;
-			}
-			break;
+			renderer.color = chooseColor(farben[1]);
+			return;
+		}
+		// TODO: intermediäre geschichten und so. machen.
+		
+	}
+
+	public Color chooseColor(string color)
+	{
+		switch(color.ToLower())
+		{
 			case "purple":
 			{
-				renderer.color = purple;
+				return purple;
 			}
-			break;
-		}
-
-	}
-	private Gene selectGene(Gene first, Gene second)
-	{
-		Gene choice;
-
-		if (first.dominant)
-		{
-			if (second.dominant)
+			case "red":
 			{
-				choice = Random.Range(1, 3) == 1 ? first : second;
+				return red;
 			}
-			else choice = first;
+			case "orange":
+			{
+				return orange;
+			}
+			case "yellow":
+			{
+				return yellow;
+			}
+			case "cyan":
+			{
+				return cyan;
+			}
+			case "blue":
+			{
+				return blue;
+			}
+			default:
+			return Color.black;
 		}
-		else if (second.dominant)
-			choice = second;
-		else choice = Random.Range(1, 3) == 1 ? first : second;
-
-		return choice;
 	}
+
 
 	public Sprite getSeedImage()
 	{
@@ -76,46 +81,5 @@ public class PlantManager : MonoBehaviour
 	}
 
 
-	public Gene[][] getDefaultGenes(int number)
-	{
-		Gene[][] g = new Gene[2][] { new Gene[2], new Gene[2] };
-		if (number == 1)
-		{
-			g[0][0] = plant1_left[0];
-			g[0][1] = plant1_right[0];
-			g[1][0] = plant1_left[1];
-			g[1][1] = plant1_right[1];
-		}
-		if (number == 2)
-		{
-			g[0][0] = plant2_left[0];
-			g[0][1] = plant2_right[0];
-			g[1][0] = plant2_left[1];
-			g[1][1] = plant2_right[1];
-		}
-		return g;
-	}
-
-	void Start()
-	{
-		Plant[] ps = FindObjectsOfType<Plant>();
-		foreach(Plant p in ps)
-		{
-			p.abnormalInit();
-		}
-	}
-
-
-}
-
-
-
-[System.Serializable]
-public struct Gene
-{
-
-	public string name;
-	public string value;
-	public bool dominant;
 
 }

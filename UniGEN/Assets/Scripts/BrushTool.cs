@@ -101,7 +101,7 @@ public class BrushTool : Tool
 		if (target1 == null || target2 == null)
 			return;
 
-		GameManager.Instance.GetPlantManager.seedPool = new Gene[2][][];
+		GameManager.Instance.GetPlantManager.seedPool = new string[2][];
 		GameManager.Instance.GetPlantManager.seedPool[0] = target1.GenoType;
 		GameManager.Instance.GetPlantManager.seedPool[1] = target2.GenoType;
 

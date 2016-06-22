@@ -3,16 +3,16 @@ using System.Collections;
 
 public class Plant : MonoBehaviour
 {
-
-	[SerializeField]
-	private Gene[][] genoType;
 	[SerializeField]
 	private bool grownUp = false;
 	private SpriteRenderer phenoType;
 
 	public int plantNumber = 1;
 	public bool Grown { get { return grownUp; } }
-	public Gene[][] GenoType
+
+	[SerializeField]
+	private string[] genoType;
+	public string[] GenoType
 	{
 		get
 		{
@@ -25,7 +25,7 @@ public class Plant : MonoBehaviour
 	}
 	
 
-	public static GameObject create(Gene[][] parent1, Gene[][] parent2)
+	public static GameObject create(string[] parent1, string[] parent2)
 	{
 		if (parent1.Length != parent2.Length)
 		{
@@ -35,25 +35,17 @@ public class Plant : MonoBehaviour
 
 		GameObject o = new GameObject("Plant");
 
-		Gene[][] newPlantData = new Gene[parent1.Length][];
+		string[] newPlantData = new string[parent1.Length];
 		for (int i = 0; i < newPlantData.Length; i++)
 		{
-			newPlantData[i] = new Gene[2];
 
-			newPlantData[i][0] = parent1[i][Random.Range(0, 2)];
-			newPlantData[i][1] = parent2[i][Random.Range(0, 2)];
+			newPlantData[i] = parent1[i].Split('.')[Random.Range(0, 2)] + '.' + parent2[i].Split('.')[Random.Range(0, 2)];
 		}
 		Plant p = o.AddComponent<Plant>();
 		p.genoType = newPlantData;
 		p.phenoType = o.AddComponent<SpriteRenderer>();
 		p.phenoType.sprite = GameManager.Instance.GetPlantManager.getSeedImage();
 		return o;
-	}
-
-	public void abnormalInit(){
-		
-		genoType = GameManager.Instance.GetPlantManager.getDefaultGenes(plantNumber);
-		GameManager.Instance.GetPlantManager.getPhenotype(genoType, GetComponent<SpriteRenderer>());
 	}
 
 	public void grow()
