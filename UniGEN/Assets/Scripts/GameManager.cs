@@ -30,12 +30,13 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private int deadline;
 
+	public GameObject winScreen;
 	public GameObject menu;
 	public GameObject dnaView;
-
+	public WinCondition win;
 
 	public string currentLevel;
-	public string winCondition;
+	public string[] winCondition;
 
 	// Use this for initialization
 	void Start()
@@ -99,6 +100,38 @@ public class GameManager : MonoBehaviour
 		{
 			dnaActive = !dnaActive;
 			dnaView.SetActive(dnaActive);
+		}
+	}
+
+	public void epicWinning(string[] level,string[] plant){
+
+		switch(level){
+		case "level1".Equals(level.ToString()):
+			win.checkForWinLevel1(plant);
+			break;
+		case "level2".Equals(level.ToString()):
+			win.checkForWinLevel2(plant);
+			break;
+		case "level3".Equals(level.ToString()):
+			win.checkForWinLevel3(plant);
+			break;
+		case "level4".Equals(level.ToString()):
+			win.checkForWinLevel4(plant);
+			break;
+		case "level5".Equals(level.ToString()):
+			win.checkForWinLevel5(plant);
+			break;
+		case "level6".Equals(level.ToString()):
+			win.checkForWinLevel6(plant);
+			break;
+
+		default:
+			Console.WriteLine("Invalid Level");
+			break;
+		}
+
+		if(win.levelAccomplished){
+			winScreen.SetActive();
 		}
 	}
 
