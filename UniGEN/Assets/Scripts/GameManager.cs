@@ -103,35 +103,36 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void epicWinning(string[] level,string[] plant){
+	public void epicWinning(string level,string[] plant){
 
 		switch(level){
-		case "level1".Equals(level.ToString()):
+
+		case "level1":
 			win.checkForWinLevel1(plant);
 			break;
-		case "level2".Equals(level.ToString()):
+		case "level2":
 			win.checkForWinLevel2(plant);
 			break;
-		case "level3".Equals(level.ToString()):
+		case "level3":
 			win.checkForWinLevel3(plant);
 			break;
-		case "level4".Equals(level.ToString()):
+		case "level4":
 			win.checkForWinLevel4(plant);
 			break;
-		case "level5".Equals(level.ToString()):
+		case "level5":
 			win.checkForWinLevel5(plant);
 			break;
-		case "level6".Equals(level.ToString()):
+		case "level6":
 			win.checkForWinLevel6(plant);
 			break;
 
 		default:
-			Console.WriteLine("Invalid Level");
+			Debug.LogError("Invalid Level");
 			break;
 		}
 
 		if(win.levelAccomplished){
-			winScreen.SetActive();
+			winScreen.SetActive(true);
 		}
 	}
 
