@@ -38,13 +38,13 @@ public class ShovelTool : Tool
 		{
 			RaycastHit2D hit = new RaycastHit2D();
 			hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward);
-			if (hit.collider == null || hit.collider.tag != "Slot")
+			if (hit.collider == null)
 			{
 				slot.PlantObject = target;
 				target.transform.position = slot.transform.position;
 				target = null;
 			}
-			else
+			else if (hit.collider.tag == "Slot")
 			{
 				Slot mySlot = hit.collider.GetComponent<Slot>();
 				if (mySlot.PlantObject != null)
@@ -56,6 +56,21 @@ public class ShovelTool : Tool
 				else
 				{
 					slot = mySlot;
+					slot.PlantObject = target;
+					target.transform.position = slot.transform.position;
+					target = null;
+				}
+			}
+			else
+			{
+				Feeding f = hit.collider.GetComponent<Feeding>();
+				if (f != null)
+				{
+					f.Feed(target.GetComponent<Plant>());
+					return;
+				}
+				else
+				{
 					slot.PlantObject = target;
 					target.transform.position = slot.transform.position;
 					target = null;

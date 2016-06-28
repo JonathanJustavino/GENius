@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,22 +35,15 @@ public class GameManager : MonoBehaviour
 	public GameObject menu;
 	public GameObject dnaView;
 	public WinCondition win;
+	public Text progressText;
 
-	public string currentLevel;
-	public string[] winCondition;
-
-	// Use this for initialization
-	void Start()
-	{
-		cycles = deadline;
-		if (currentLevel == "")
-			currentLevel = "Main";
-	}
 
 	void Awake()
 	{
 		if (plantManager == null)
 			plantManager = GetComponent<PlantManager>();
+		if (progressText)
+			progressText.text = "Progress: " + win.GetProgress();
 	}
 
 	// Update is called once per frame
@@ -58,7 +52,7 @@ public class GameManager : MonoBehaviour
 
 	}
 
-	public void endCycle()
+	public void EndCycle()
 	{
 		cycles--;
 		Slot s;
@@ -70,22 +64,29 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void restart()
+	public void Restart()
 	{
-		SceneManager.LoadScene("Scenes/" + currentLevel);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	public void StartLevel(string levelName)
 	{
 		SceneManager.LoadScene("Scenes/" + levelName);
 	}
+	public void NextLevel()
+	{
+		
+		if (SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex +1)
+			SceneManager.LoadScene(0);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+	}
 
-	public void quit()
+	public void Quit()
 	{
 		Application.Quit();
 	}
 
-	public void toggleSound()
+	public void ToggleSound()
 	{
 		if (menu != null)
 		{
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void toggleDNA(Plant flowerPower)
+	public void ToggleDNA(Plant flowerPower)
 	{
 		if (dnaView != null)
 		{
@@ -103,36 +104,39 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void epicWinning(string[] level,string[] plant){
-
-		switch(level){
-		case "level1".Equals(level.ToString()):
-			win.checkForWinLevel1(plant);
+	public bool EpicWinning(string[] plant){
+		bool positiveResult;
+		switch(SceneManager.GetActiveScene().name){
+		case "Level_1":
+			positiveResult = win.checkForWinLevel1(plant);
 			break;
-		case "level2".Equals(level.ToString()):
-			win.checkForWinLevel2(plant);
+		case "Level_2":
+			positiveResult = win.checkForWinLevel2(plant);
 			break;
-		case "level3".Equals(level.ToString()):
-			win.checkForWinLevel3(plant);
+		case "Level_3":
+			positiveResult = win.checkForWinLevel3(plant);
 			break;
-		case "level4".Equals(level.ToString()):
-			win.checkForWinLevel4(plant);
+		case "Level_4":
+			positiveResult = win.checkForWinLevel4(plant);
 			break;
-		case "level5".Equals(level.ToString()):
-			win.checkForWinLevel5(plant);
+		case "Level_5":
+			positiveResult = win.checkForWinLevel5(plant);
 			break;
-		case "level6".Equals(level.ToString()):
-			win.checkForWinLevel6(plant);
+		case "Level_6":
+			positiveResult = win.checkForWinLevel6(plant);
 			break;
 
 		default:
-			Console.WriteLine("Invalid Level");
+			Debug.LogError("Invalid Level");
+			positiveResult = false;
 			break;
 		}
 
 		if(win.levelAccomplished){
-			winScreen.SetActive();
+			winScreen.SetActive(true);
 		}
+		progressText.text = "Progress: " + win.GetProgress();
+		return positiveResult;
 	}
 
 
