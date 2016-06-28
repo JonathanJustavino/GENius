@@ -3,6 +3,19 @@ using System.Collections;
 
 public class Slot : MonoBehaviour {
 
-	public GameObject PlantObject;
+	[SerializeField]
+	private GameObject plantObject;
+	public GameObject PlantObject
+	{
+		get
+		{
+			return plantObject;
+		}
+		set
+		{
+			plantObject = value;
+		}
+	}
+
 	
 }
