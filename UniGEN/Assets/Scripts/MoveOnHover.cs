@@ -8,6 +8,8 @@ public class MoveOnHover : MonoBehaviour {
     public Movement movement;
     public float animationTime = 1;
 
+	private bool mouseIn = false;
+
     private Collider2D col;
 
     void Awake()
@@ -23,16 +25,17 @@ public class MoveOnHover : MonoBehaviour {
         while(true)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.forward, 15f);
-            if (hit && hit.collider == col)
+            if (!mouseIn && hit && hit.collider == col)
             {
                 if (transform != endPos && !movement.routineRunning)
                     movement.move(endPos.position, animationTime);
-
+				mouseIn = true;
             }
-            else
+            else if (mouseIn && (!hit || hit.collider != col))
             {
                 if (transform != startPos && !movement.routineRunning)
                     movement.move(startPos.position, animationTime);
+				mouseIn = false;
             }
             yield return null;
         }

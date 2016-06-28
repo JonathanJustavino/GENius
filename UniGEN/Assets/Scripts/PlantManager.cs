@@ -24,7 +24,12 @@ public class PlantManager : MonoBehaviour
 	public void getPhenotype(string[] genotype, SpriteRenderer renderer)
 	{
 		renderer.sharedMaterial = plantMaterial;
-		renderer.sprite = defaultPlantSprite;
+
+		string[] dornen = genotype[0].Split('.');
+		if (dornen[0] == "1" || dornen[1] == "1")
+			renderer.sprite = Resources.Load<Sprite>("Rose_thorns");
+		else
+			renderer.sprite = defaultPlantSprite;
 
 		if (!intermediäreFärbung)
 		{
