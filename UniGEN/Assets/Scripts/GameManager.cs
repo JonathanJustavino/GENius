@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private PlantManager plantManager;
 	public PlantManager GetPlantManager{get{return plantManager;}}
-	private int cycles;
 	private bool dnaActive = false;
 	private bool menuActive = false;
+	private int elapsedCycles;
 
 	[SerializeField]
 	private GameObject[] flowerSlots;
@@ -34,27 +34,35 @@ public class GameManager : MonoBehaviour
 	public GameObject winScreen;
 	public GameObject menu;
 	public GameObject dnaView;
-	public WinCondition win;
+	public GameObject gameOverView;
+	private WinCondition win;
 	public Text progressText;
-
+	public Text timeLimitInfo;
 
 	void Awake()
 	{
+		elapsedCycles = 0;
+		win = GetComponent<WinCondition>();
 		if (plantManager == null)
 			plantManager = GetComponent<PlantManager>();
 		if (progressText)
-			progressText.text = "Progress: " + win.GetProgress();
+			progressText.text = "Fortschritt: " + win.GetProgress();
+		if (timeLimitInfo)
+			timeLimitInfo.text = "" + elapsedCycles + "/" + deadline;
+		if (gameOverView == null)
+			Debug.LogError("there is no game over available. Be sure you created a UI and applied it to the GameManager variable!");
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
+	//// Update is called once per frame
+	//void Update()
+	//{
 
-	}
+	//}
 
 	public void EndCycle()
 	{
-		cycles--;
+		if (deadline > 0)
+			elapsedCycles++;
 		Slot s;
 		foreach (GameObject go in flowerSlots)
 		{
@@ -62,6 +70,10 @@ public class GameManager : MonoBehaviour
 			if (s.PlantObject != null)
 				s.PlantObject.GetComponent<Plant>().grow();
 		}
+		if (timeLimitInfo)
+			timeLimitInfo.text = "" + elapsedCycles + "/" + deadline;
+		if (elapsedCycles > deadline)
+			gameOverView.SetActive(true);
 	}
 
 	public void Restart()
@@ -135,7 +147,11 @@ public class GameManager : MonoBehaviour
 		if(win.levelAccomplished){
 			winScreen.SetActive(true);
 		}
-		progressText.text = "Progress: " + win.GetProgress();
+		else if (win.levelLost)
+		{
+			gameOverView.SetActive(true);
+		}
+		progressText.text = "Fortschritt: " + win.GetProgress();
 		return positiveResult;
 	}
 
