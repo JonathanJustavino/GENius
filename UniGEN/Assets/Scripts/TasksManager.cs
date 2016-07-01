@@ -5,6 +5,7 @@ using System.Collections;
 public class TasksManager : MonoBehaviour
 {
 	public Movement horsePos;
+	public MoveOnHover mover;
 	public Dialog dialog;
 
 	public Text newTextArea;
@@ -19,7 +20,8 @@ public class TasksManager : MonoBehaviour
 			this.gameObject.SetActive(false);
 			return;
 		}
-
+		if (mover)
+			mover.enabled = false;
 		startPos = horsePos.transform.position;
 		horsePos.SubscribeToReachAction(dialog.StartTextDisplaying);
 		horsePos.move((Vector2) horsePos.transform.position + Vector2.right, 0.25f, 0.5f);
@@ -34,11 +36,12 @@ public class TasksManager : MonoBehaviour
 	void moveHorseBack()
 	{
 		horsePos.move(startPos, 0.25f);
-		dialog.UnsubscribeAllTextsDone(moveHorseBack);
 		horsePos.SubscribeToReachAction(lastStep);
 	}
 	void lastStep()
 	{
+		if (mover)
+			mover.enabled = true;
 		unsubscribeAll();
 		dialog.writeStringsToText(newTextArea);
 	}

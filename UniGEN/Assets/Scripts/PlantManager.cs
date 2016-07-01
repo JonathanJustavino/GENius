@@ -25,36 +25,54 @@ public class PlantManager : MonoBehaviour
 	{
 		renderer.sharedMaterial = plantMaterial;
 
+		//----------check for thorns-------------
 		string[] dornen = genotype[0].Split('.');
+
 		if (dornen[0] == "1" || dornen[1] == "1")
 			renderer.sprite = Resources.Load<Sprite>("Rose_thorns");
 		else
 			renderer.sprite = defaultPlantSprite;
 
+		// ----------choose color-----------------
+		string[] colors = genotype[2].Split('.');
+		string color = "";
+
 		if (!intermediäreFärbung)
 		{
-			string[] farben = genotype[2].Split('.');
-			if (char.IsUpper(farben[0][0]))
-			{
-				renderer.color = chooseColor(farben[0]);
-				return;
-			}
-			renderer.color = chooseColor(farben[1]);
-			return;
+			if (char.IsUpper(colors[0][0]))
+				color = colors[0];
+			else
+				color = colors[1];
 		}
-		// TODO: intermediäre geschichten und so. machen.
-		
+		else    // intermedäreFärbung := true
+		{
+			if (colors[0] == colors[1])
+				color = colors[0];
+			else
+			{
+				if (colors[0] == "rot")
+				{
+					color = colors[1] == "blau" ? "lila" : "orange";
+				}
+				else if (colors[1] == "rot")
+				{
+					color = colors[0] == "blau" ? "lila" : "orange";
+				}
+				else color = "cyan";
+			}
+		}
+		renderer.color = chooseColor(color);
 	}
 
 	public Color chooseColor(string color)
 	{
-		switch(color.ToLower())
+		switch (color.ToLower())
 		{
-			case "purple":
+			case "lila":
 			{
 				return purple;
 			}
-			case "red":
+			case "rot":
 			{
 				return red;
 			}
@@ -62,7 +80,7 @@ public class PlantManager : MonoBehaviour
 			{
 				return orange;
 			}
-			case "yellow":
+			case "gelb":
 			{
 				return yellow;
 			}
@@ -70,7 +88,7 @@ public class PlantManager : MonoBehaviour
 			{
 				return cyan;
 			}
-			case "blue":
+			case "blau":
 			{
 				return blue;
 			}
