@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField]
 	private PlantManager plantManager;
-	public PlantManager GetPlantManager{get{return plantManager;}}
+	public PlantManager GetPlantManager { get { return plantManager; } }
 	private bool dnaActive = false;
 	private bool menuActive = false;
 	private int elapsedCycles;
@@ -87,8 +87,8 @@ public class GameManager : MonoBehaviour
 	}
 	public void NextLevel()
 	{
-		
-		if (SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex +1)
+
+		if (SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex + 1)
 			SceneManager.LoadScene(0);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
@@ -116,42 +116,48 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public bool EpicWinning(string[] plant){
+	public bool EpicWinning(string[] plant)
+	{
 		bool positiveResult;
-		switch(SceneManager.GetActiveScene().name){
-		case "Level_1":
+		switch (SceneManager.GetActiveScene().name)
+		{
+			case "Level_1":
 			positiveResult = win.checkForWinLevel1(plant);
 			break;
-		case "Level_2":
+			case "Level_2":
 			positiveResult = win.checkForWinLevel2(plant);
 			break;
-		case "Level_3":
+			case "Level_3":
 			positiveResult = win.checkForWinLevel3(plant);
 			break;
-		case "Level_4":
+			case "Level_4":
 			positiveResult = win.checkForWinLevel4(plant);
 			break;
-		case "Level_5":
+			case "Level_5":
 			positiveResult = win.checkForWinLevel5(plant);
 			break;
-		case "Level_6":
+			case "Level_6":
 			positiveResult = win.checkForWinLevel6(plant);
 			break;
 
-		default:
+			default:
 			Debug.LogError("Invalid Level");
 			positiveResult = false;
 			break;
 		}
 
-		if(win.levelAccomplished){
+		if (win.levelAccomplished)
+		{
 			winScreen.SetActive(true);
 		}
 		else if (win.levelLost)
 		{
 			gameOverView.SetActive(true);
 		}
-		progressText.text = "Fortschritt: " + win.GetProgress();
+		else
+		{
+			progressText.text = "Fortschritt: " + win.GetProgress();
+		}
 		return positiveResult;
 	}
 
