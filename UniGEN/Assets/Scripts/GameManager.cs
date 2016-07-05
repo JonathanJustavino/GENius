@@ -22,9 +22,11 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private PlantManager plantManager;
 	public PlantManager GetPlantManager { get { return plantManager; } }
+
 	private bool dnaActive = false;
 	private bool menuActive = false;
 	private int elapsedCycles;
+	private AudioSource source;
 
 	[SerializeField]
 	private GameObject[] flowerSlots;
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
 
 	void Awake()
 	{
+		source = GetComponent<AudioSource>();
 		elapsedCycles = 0;
 		win = GetComponent<WinCondition>();
 		if (plantManager == null)
@@ -64,12 +67,19 @@ public class GameManager : MonoBehaviour
 		if (deadline > 0)
 			elapsedCycles++;
 		Slot s;
+		bool somethingsgrown = false;
 		foreach (GameObject go in flowerSlots)
 		{
 			s = go.GetComponent<Slot>();
 			if (s.PlantObject != null)
-				s.PlantObject.GetComponent<Plant>().grow();
+			{
+				if (s.PlantObject.GetComponent<Plant>().grow())
+					somethingsgrown = true;
+			}
+
 		}
+		if (somethingsgrown)
+			source.Play();
 		if (timeLimitInfo)
 			timeLimitInfo.text = "" + elapsedCycles + "/" + deadline;
 		if (elapsedCycles > deadline)

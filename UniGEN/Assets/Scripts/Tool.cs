@@ -8,12 +8,15 @@ public class Tool : MonoBehaviour
 
 	public bool isActive { get; private set; }
 
+
 	public Sprite defaultImage;
 	public Sprite activeImage;
 
 	public Texture2D cursor;
 	public Texture2D defaultGameCursor { get; set; }
 	public Vector2 cursorHotSpot;
+
+	public AudioSource source;
 
 	public GameObject[] popUps;
 
@@ -64,4 +67,5 @@ public class Tool : MonoBehaviour
 	{
 
 	}
+
 }

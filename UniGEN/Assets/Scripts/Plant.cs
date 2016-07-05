@@ -47,11 +47,12 @@ public class Plant : MonoBehaviour
 		return o;
 	}
 
-	public void grow()
+	public bool grow()
 	{
 		if (grownUp)
-			return;
+			return false;
 		GameManager.Instance.GetPlantManager.getPhenotype(genoType, GetComponent<SpriteRenderer>());
 		grownUp = true;
+		return true;
 	}
 }

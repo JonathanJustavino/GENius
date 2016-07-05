@@ -21,6 +21,7 @@ public class ShovelTool : Tool
 				slot = hit.collider.GetComponent<Slot>();
 				if (slot.PlantObject != null)
 				{
+					source.Play();
 					target = slot.PlantObject;
 					slot.PlantObject = null;
 				}

@@ -24,6 +24,7 @@ public class SeedPouchTool : Tool
 			Slot s = hit.collider.GetComponent<Slot>();
 			if (s.PlantObject == null)
 			{
+				source.Play();
 				GameObject g = Plant.create(GameManager.Instance.GetPlantManager.seedPool[0], GameManager.Instance.GetPlantManager.seedPool[1]);
 				s.PlantObject = g;
 				g.transform.parent = s.transform;
