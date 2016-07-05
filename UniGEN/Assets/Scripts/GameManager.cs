@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
 			dnaView.SetActive(dnaActive);
 		}
 	}
+		
 
 	public bool EpicWinning(string[] plant)
 	{
@@ -157,6 +158,7 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			progressText.text = "Fortschritt: " + win.GetProgress();
+
 		}
 		return positiveResult;
 	}
