@@ -23,7 +23,6 @@ public class Plant : MonoBehaviour
 			genoType = value;
 		}
 	}
-	
 
 	public static GameObject create(string[] parent1, string[] parent2)
 	{

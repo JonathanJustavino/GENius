@@ -47,15 +47,20 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BrushTool.cs" />
      <Compile Include="Assets\Scripts\Dialog.cs" />
+     <Compile Include="Assets\Scripts\Feeding.cs" />
+     <Compile Include="Assets\Scripts\Fly.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MoveOnHover.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\Plant.cs" />
+     <Compile Include="Assets\Scripts\PlantManager.cs" />
      <Compile Include="Assets\Scripts\RakeTool.cs" />
      <Compile Include="Assets\Scripts\SeedPouchTool.cs" />
      <Compile Include="Assets\Scripts\ShovelTool.cs" />
      <Compile Include="Assets\Scripts\Slot.cs" />
+     <Compile Include="Assets\Scripts\TasksManager.cs" />
      <Compile Include="Assets\Scripts\Tool.cs" />
+     <Compile Include="Assets\Scripts\WinCondition.cs" />
      <None Include="Assets\SpriteStuff.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

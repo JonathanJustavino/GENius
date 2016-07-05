@@ -41,45 +41,44 @@ public class BrushTool : Tool
 				if (currentTarget == 1)
 				{
 					target1 = g.GetComponent<Plant>();
-					if (target2 == target1)
-						target1 = null;
-
-					else 
+					if (target1 == target2)
 					{
-						if (t1 != null)
-						{
-							t1.sprite = target1.GetComponent<SpriteRenderer>().sprite;
-							t1.material = target1.GetComponent<SpriteRenderer>().material;
-							t1.color = target1.GetComponent<SpriteRenderer>().color;
-						}
-						currentTarget = 2;
+						target1 = null;
+						return;
 					}
+					if (t1 != null)
+					{
+						t1.type = Image.Type.Simple;
+						t1.preserveAspect = true;
+						t1.sprite = target1.GetComponent<SpriteRenderer>().sprite;
+						t1.material = target1.GetComponent<SpriteRenderer>().material;
+						t1.color = target1.GetComponent<SpriteRenderer>().color;
+					}
+					currentTarget = 2;
 				}
 				else if (currentTarget == 2)
 				{
 					target2 = g.GetComponent<Plant>();
-					if (target1 == target2)
-						target2 = null;
-
-					else 
+					if (target2 == target1)
 					{
-						if (t2 != null)
-						{
-							t2.sprite = target2.GetComponent<SpriteRenderer>().sprite;
-							t2.material = target2.GetComponent<SpriteRenderer>().material;
-							t2.color = target2.GetComponent<SpriteRenderer>().color;
-						}
-						currentTarget = 1;
+						target2 = null;
+						return;
 					}
+
+					if (t2 != null)
+					{
+						t2.type = Image.Type.Simple;
+						t2.preserveAspect = true;
+						t2.sprite = target2.GetComponent<SpriteRenderer>().sprite;
+						t2.material = target2.GetComponent<SpriteRenderer>().material;
+						t2.color = target2.GetComponent<SpriteRenderer>().color;
+					}
+					currentTarget = 1;
 				}
 
 				if (target1 != null && target2 != null)
 				{
 					createButton.interactable = true;
-				}
-				else
-				{
-					createButton.interactable = false;
 				}
 			}
 		}
@@ -87,12 +86,22 @@ public class BrushTool : Tool
 
 	public void ChoseTarget1()
 	{
-		currentTarget= 1;
+		currentTarget = 1;
+		t1.sprite = defaultSprite;
+		t1.type = Image.Type.Sliced;
+		t1.color = Color.white;
+		target1 = null;
+		createButton.interactable = false;
 	}
 
 	public void ChoseTarget2()
 	{
 		currentTarget = 2;
+		t2.sprite = defaultSprite;
+		t2.type = Image.Type.Sliced;
+		t2.color = Color.white;
+		target2 = null;
+		createButton.interactable = true;
 	}
 
 
@@ -110,7 +119,11 @@ public class BrushTool : Tool
 		if (createButton != null)
 		{
 			t1.sprite = defaultSprite;
+			t1.type = Image.Type.Sliced;
+			t1.color = Color.white;
 			t2.sprite = defaultSprite;
+			t2.type = Image.Type.Sliced;
+			t2.color = Color.white;
 			createButton.interactable = false;
 		}
 	}

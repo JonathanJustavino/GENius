@@ -8,14 +8,15 @@ public class Movement : MonoBehaviour
 
 	Action reachedTarget;
 
-	public void move(Vector2 targetPosition, float time)
+	public void move(Vector2 targetPosition, float duration, float delay = 0)
 	{
-		StartCoroutine(moveRoutine(targetPosition, time));
+		StartCoroutine(moveRoutine(targetPosition, duration, delay));
 
 	}
 
-	IEnumerator moveRoutine(Vector2 targetPos, float time)
+	IEnumerator moveRoutine(Vector2 targetPos, float time, float delay)
     {
+		yield return new WaitForSeconds(delay);
         routineRunning = true;
         float runTime = 0;
         Vector2 startPos = transform.position;
@@ -25,9 +26,9 @@ public class Movement : MonoBehaviour
             runTime += Time.deltaTime;
             yield return null;
         }
+
 		if (reachedTarget != null)
 			reachedTarget.Invoke();
-
 		routineRunning = false;
     }
 
@@ -36,7 +37,7 @@ public class Movement : MonoBehaviour
 		reachedTarget += myFunc;
 	}
 
-	public void UnsubscribeToReachedActeion(Action myFunc)
+	public void UnsubscribeToReachedAction(Action myFunc)
 	{
 		reachedTarget -= myFunc;
 	}
