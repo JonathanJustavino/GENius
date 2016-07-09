@@ -21,7 +21,7 @@ public class ShovelTool : Tool
 				slot = hit.collider.GetComponent<Slot>();
 				if (slot.PlantObject != null)
 				{
-					source.Play();
+					SoundManager.Instance.PlaySound("digging");
 					target = slot.PlantObject;
 					slot.PlantObject = null;
 				}

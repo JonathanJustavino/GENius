@@ -16,8 +16,6 @@ public class Tool : MonoBehaviour
 	public Texture2D defaultGameCursor { get; set; }
 	public Vector2 cursorHotSpot;
 
-	public AudioSource source;
-
 	public GameObject[] popUps;
 
 	protected virtual void Awake()

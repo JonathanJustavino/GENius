@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 	private bool dnaActive = false;
 	private bool menuActive = false;
 	private int elapsedCycles;
-	private AudioSource source;
 
 	[SerializeField]
 	private GameObject[] flowerSlots;
@@ -43,7 +42,6 @@ public class GameManager : MonoBehaviour
 
 	void Awake()
 	{
-		source = GetComponent<AudioSource>();
 		elapsedCycles = 0;
 		win = GetComponent<WinCondition>();
 		if (plantManager == null)
@@ -52,7 +50,7 @@ public class GameManager : MonoBehaviour
 			progressText.text = "Fortschritt: " + win.GetProgress();
 		if (timeLimitInfo)
 			timeLimitInfo.text = "" + elapsedCycles + "/" + deadline;
-		if (gameOverView == null)
+		if (gameOverView == null && SceneManager.GetActiveScene().name != "MainMenu")
 			Debug.LogError("there is no game over available. Be sure you created a UI and applied it to the GameManager variable!");
 	}
 
@@ -79,7 +77,7 @@ public class GameManager : MonoBehaviour
 
 		}
 		if (somethingsgrown)
-			source.Play();
+			SoundManager.Instance.PlaySound("leaves_rustling");
 		if (timeLimitInfo)
 			timeLimitInfo.text = "" + elapsedCycles + "/" + deadline;
 		if (elapsedCycles > deadline)

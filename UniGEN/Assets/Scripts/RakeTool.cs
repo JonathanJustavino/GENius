@@ -15,7 +15,7 @@ public class RakeTool : Tool
 				return;
 			else
 			{
-				source.Play();
+				SoundManager.Instance.PlaySound("digging");
 				Slot s = hit.collider.GetComponent<Slot>();
 				if (s.PlantObject!= null)
 					Destroy(s.PlantObject.gameObject);
