@@ -21,7 +21,7 @@ public class TasksManager : MonoBehaviour
 			return;
 		}
 		if (mover)
-			mover.enabled = false;
+			mover.gameObject.SetActive(false);
 		startPos = horsePos.transform.position;
 		horsePos.SubscribeToReachAction(dialog.StartTextDisplaying);
 		horsePos.move((Vector2) horsePos.transform.position + Vector2.right, 0.25f, 0.5f);
@@ -41,7 +41,7 @@ public class TasksManager : MonoBehaviour
 	void lastStep()
 	{
 		if (mover)
-			mover.enabled = true;
+			mover.gameObject.SetActive(true);
 		unsubscribeAll();
 		dialog.writeStringsToText(newTextArea);
 	}
